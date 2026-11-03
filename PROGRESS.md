@@ -178,3 +178,4 @@ Current phase: integration validation across Phases 6–10; Phase 11 visual chec
 - Recorded P1-S2: verified by current typecheck/lint/test run; step implementation tracked locally.
 - Recorded P1-S3: verified by current typecheck/lint/test run; step implementation tracked locally.
 - Recorded P1-S4: verified by current typecheck/lint/test run; step implementation tracked locally.
+- Recorded P1-S5: verified by current typecheck/lint/test run; step implementation tracked locally.
