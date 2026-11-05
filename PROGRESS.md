@@ -115,13 +115,13 @@ Current phase: Phase 12 final source/package preparation. Implementation and all
 - [x] GATE 11
 
 ### PHASE 12 — Packaging & demo readiness
-- [ ] P12-S1 Server executable
-- [ ] P12-S2 Client executables
-- [ ] P12-S3 CI
-- [ ] P12-S4 Offline verification
+- [ ] P12-S1 Server executable (built; native execution blocked by host policy)
+- [ ] P12-S2 Client executables (Windows portable built; host policy blocks package execution; Linux/macOS remain CI-only)
+- [x] P12-S3 CI
+- [ ] P12-S4 Offline verification (procedure complete; physical LAN/internet-disabled evidence pending)
 - [x] P12-S5 Demo tooling
 - [x] P12-S6 Code-comment & hygiene audit
-- [ ] P12-S7 Final QA & source package
+- [x] P12-S7 Final QA & source package
 - [ ] GATE 12
 - [ ] M1 Socket-based client–server architecture over TCP on LAN; works with internet off
 - [x] M2 Freehand drawing, erase, color selection on shared canvas
