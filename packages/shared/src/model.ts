@@ -57,7 +57,11 @@ const bindSchema = z
 /** Element fields remain flat to make property-level last-writer-wins explicit. */
 export const elementSchema = z
   .object({
-    id: z.string().min(1).max(100).refine(id=>!['__proto__','constructor','prototype'].includes(id)),
+    id: z
+      .string()
+      .min(1)
+      .max(100)
+      .refine((id) => !["__proto__", "constructor", "prototype"].includes(id)),
     type: z.enum(elementTypes),
     x: coord,
     y: coord,
@@ -77,7 +81,10 @@ export const elementSchema = z
     points: z
       .array(coord)
       .max(LIMITS.maxPoints * 2)
-      .refine(points=>points.length%2===0,'Points must be coordinate pairs')
+      .refine(
+        (points) => points.length % 2 === 0,
+        "Points must be coordinate pairs",
+      )
       .optional(),
     tool: z.enum(["pen", "highlighter"]).optional(),
     size: z.number().min(1).max(200).optional(),
@@ -115,10 +122,14 @@ export const boardSchema = z
   .strict();
 /** Authoritative sequence plus indexed elements. */
 export type BoardState = z.infer<typeof boardSchema>;
+/** Patch only changed element/style properties so concurrent gestures preserve unrelated fields. */
+export type PatchSet = Omit<Partial<Element>, "style"> & {
+  style?: Partial<Element["style"]>;
+};
 /** Operation algebra; batch nesting is validated with a depth budget by the reducer. */
 export type Op =
   | { kind: "add"; el: Element }
-  | { kind: "patch"; id: string; set: Partial<Element> }
+  | { kind: "patch"; id: string; set: PatchSet }
   | { kind: "remove"; ids: string[] }
   | { kind: "batch"; ops: Op[] }
   | { kind: "clear" }
@@ -142,7 +153,9 @@ export const opSchema: z.ZodType<Op> = z.lazy(() =>
             ver: true,
             updatedAt: true,
             type: true,
-          }),
+            style: true,
+          })
+          .extend({ style: styleSchema.partial().optional() }),
       })
       .strict(),
     z

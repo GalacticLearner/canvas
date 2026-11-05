@@ -1,8 +1,129 @@
 /** Every catalog message has a valid round-trip fixture; malformed limits are negative cases. */
-import {it,expect} from 'vitest';
-import {catalog,msg,parseEnvelope,defaultSettings,emptyBoard,makeElement,encodeFrames,FrameDecoder} from './index';
-const p={id:'u',username:'Ada',role:'owner',color:'#0072B2',status:'online'},state=emptyBoard(),op={kind:'add',el:makeElement('rect','r')},applied={seq:1,opId:'o',by:'u',op},present={active:false},error={code:'DENIED',message:'No'},hash='a'.repeat(64),chat={id:'c',by:'u',username:'Ada',text:'Hello',ts:1};
-const fixtures:Record<string,unknown>={hello:{clientId:'c',app:'Canvas',appVersion:'1',platform:'win32'},hello_ack:{serverId:'s',serverName:'Studio',serverTime:1,hbIntervalMs:5000,hbTimeoutMs:15000,limits:{}},ping:{n:1},pong:{n:1},room_create:{name:'Room',username:'Ada'},room_join:{code:'ABC234',username:'Ada'},auth_challenge:{salt:'s',nonce:'n',kdf:{N:16384,r:8,p:1}},auth_proof:{proof:hash},join_pending:{},join_request:{pendingId:'p',username:'Ada'},join_decide:{pendingId:'p',allow:true},join_ok:{code:'ABC234',you:p,participants:[p],settings:defaultSettings,seq:0,mode:'snapshot',snapshot:state,chat:[],present,resumeToken:'token'},join_denied:error,room_leave:{},participant_joined:{participant:p},participant_left:{participant:p},participant_updated:{participant:p},role_set:{userId:'u',role:'viewer'},kick:{userId:'u'},owner_transfer:{userId:'u'},settings_update:{patch:{boardLocked:true}},settings_changed:{settings:defaultSettings},op:{opId:'o',op},op_applied:applied,op_rejected:{opId:'o',...error},eph:{k:'cursor',d:{x:1,y:2}},sync_req:{fromSeq:0},sync_delta:{fromSeq:0,toSeq:1,ops:[applied]},sync_snapshot:{seq:0,snapshot:state},checkpoint:{seq:0,hash:'h',count:0},chat_send:{cid:'c',text:'Hello'},chat_msg:chat,snap_save:{label:'First'},snap_list:{},snap_get:{id:'s'},snap_restore:{id:'s'},snap_delete:{id:'s'},snap_list_result:{snapshots:[]},snap_data:{id:'s',state},snap_changed:{},asset_have:{hash},asset_have_result:{hash,have:false},asset_put:{hash,mime:'image/png',size:1,idx:0,total:1,data:'AA=='},asset_put_ok:{hash},asset_get:{hash},asset_chunk:{hash,mime:'image/png',idx:0,total:1,data:'AA=='},present_set:present,present_state:present,error,bye:{reason:'Done'}};
-it('round-trips every wire message and rejects unknown fields',()=>{expect(Object.keys(fixtures).sort()).toEqual(Object.keys(catalog).sort());for(const [t,p]of Object.entries(fixtures)){const e={v:1,t,p};expect(parseEnvelope(e).t).toBe(t);}expect(()=>parseEnvelope({...msg('ping',{n:1}),extra:true})).toThrow();expect(()=>parseEnvelope({v:1,t:'constructor',p:{}})).toThrow();});
-it('chunks a large logical envelope while keeping every frame under 4 MiB',()=>{const value={v:1,t:'sync_snapshot',p:{text:'λ'.repeat(2500000)}};const frames=encodeFrames(value),decoder=new FrameDecoder();expect(frames.length).toBeGreaterThan(1);expect(frames.every(f=>f.length<4*1024*1024)).toBe(true);expect(frames.flatMap(f=>decoder.push(f))).toEqual([value]);});
-it('rejects nested malicious payloads before recursive schema parsing',()=>{let op:any={kind:'clear'};for(let i=0;i<100;i++)op={kind:'batch',ops:[op]};expect(()=>parseEnvelope({v:1,t:'op',p:{opId:'deep',op}})).toThrow();});
+import { it, expect } from "vitest";
+import {
+  catalog,
+  msg,
+  parseEnvelope,
+  defaultSettings,
+  emptyBoard,
+  makeElement,
+  encodeFrames,
+  FrameDecoder,
+} from "./index";
+const p = {
+    id: "u",
+    username: "Ada",
+    role: "owner",
+    color: "#0072B2",
+    status: "online",
+  },
+  state = emptyBoard(),
+  op = { kind: "add", el: makeElement("rect", "r") },
+  applied = { seq: 1, opId: "o", by: "u", op },
+  present = { active: false },
+  error = { code: "DENIED", message: "No" },
+  hash = "a".repeat(64),
+  chat = { id: "c", by: "u", username: "Ada", text: "Hello", ts: 1 };
+const fixtures: Record<string, unknown> = {
+  hello: { clientId: "c", app: "Canvas", appVersion: "1", platform: "win32" },
+  hello_ack: {
+    serverId: "s",
+    serverName: "Studio",
+    serverTime: 1,
+    hbIntervalMs: 5000,
+    hbTimeoutMs: 15000,
+    limits: {},
+  },
+  ping: { n: 1 },
+  pong: { n: 1 },
+  room_create: { name: "Room", username: "Ada" },
+  room_join: { code: "ABC234", username: "Ada" },
+  auth_challenge: { salt: "s", nonce: "n", kdf: { N: 16384, r: 8, p: 1 } },
+  auth_proof: { proof: hash },
+  join_pending: {},
+  join_request: { pendingId: "p", username: "Ada" },
+  join_decide: { pendingId: "p", allow: true },
+  join_ok: {
+    code: "ABC234",
+    you: p,
+    participants: [p],
+    settings: defaultSettings,
+    seq: 0,
+    mode: "snapshot",
+    snapshot: state,
+    chat: [],
+    present,
+    resumeToken: "token",
+  },
+  join_denied: error,
+  room_leave: {},
+  participant_joined: { participant: p },
+  participant_left: { participant: p },
+  participant_updated: { participant: p },
+  role_set: { userId: "u", role: "viewer" },
+  kick: { userId: "u" },
+  owner_transfer: { userId: "u" },
+  settings_update: { patch: { boardLocked: true } },
+  settings_changed: { settings: defaultSettings },
+  op: { opId: "o", op },
+  op_applied: applied,
+  op_rejected: { opId: "o", ...error },
+  eph: { k: "cursor", d: { x: 1, y: 2 } },
+  sync_req: { fromSeq: 0 },
+  sync_delta: { fromSeq: 0, toSeq: 1, ops: [applied] },
+  sync_snapshot: { seq: 0, snapshot: state },
+  checkpoint: { seq: 0, hash: "h", count: 0 },
+  chat_send: { cid: "c", text: "Hello" },
+  chat_msg: chat,
+  snap_save: { label: "First" },
+  snap_list: {},
+  snap_get: { id: "s" },
+  snap_restore: { id: "s" },
+  snap_delete: { id: "s" },
+  snap_list_result: { snapshots: [] },
+  snap_data: { id: "s", state },
+  snap_changed: {},
+  asset_have: { hash },
+  asset_have_result: { hash, have: false },
+  asset_put: {
+    hash,
+    mime: "image/png",
+    size: 1,
+    idx: 0,
+    total: 1,
+    data: "AA==",
+  },
+  asset_put_ok: { hash },
+  asset_get: { hash },
+  asset_chunk: { hash, mime: "image/png", idx: 0, total: 1, data: "AA==" },
+  present_set: present,
+  present_state: present,
+  error,
+  bye: { reason: "Done" },
+};
+it("round-trips every wire message and rejects unknown fields", () => {
+  expect(Object.keys(fixtures).sort()).toEqual(Object.keys(catalog).sort());
+  for (const [t, p] of Object.entries(fixtures)) {
+    const e = { v: 1, t, p };
+    expect(parseEnvelope(e).t).toBe(t);
+  }
+  expect(() =>
+    parseEnvelope({ ...msg("ping", { n: 1 }), extra: true }),
+  ).toThrow();
+  expect(() => parseEnvelope({ v: 1, t: "constructor", p: {} })).toThrow();
+});
+it("chunks a large logical envelope while keeping every frame under 4 MiB", () => {
+  const value = { v: 1, t: "sync_snapshot", p: { text: "λ".repeat(2500000) } };
+  const frames = encodeFrames(value),
+    decoder = new FrameDecoder();
+  expect(frames.length).toBeGreaterThan(1);
+  expect(frames.every((f) => f.length < 4 * 1024 * 1024)).toBe(true);
+  expect(frames.flatMap((f) => decoder.push(f))).toEqual([value]);
+});
+it("rejects nested malicious payloads before recursive schema parsing", () => {
+  let op: any = { kind: "clear" };
+  for (let i = 0; i < 100; i++) op = { kind: "batch", ops: [op] };
+  expect(() =>
+    parseEnvelope({ v: 1, t: "op", p: { opId: "deep", op } }),
+  ).toThrow();
+});

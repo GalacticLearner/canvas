@@ -6,3 +6,5 @@ coverage/
 test-results/
 .runtime/
 packages/client/dist/
+.impeccable/config.local.json
+design/screens/failure-*.png

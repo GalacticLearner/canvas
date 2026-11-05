@@ -1,0 +1,134 @@
+{
+  "title": "Canvas",
+  "url": "file:///C:/Users/Efanio%20Jens/Desktop/Jen's%20Files/IIITDM/Year%203/Computer%20Networks/Lab%20Project/dist/client/renderer/index.html",
+  "scan": {
+    "code": 2,
+    "signal": null,
+    "out": "[\n  {\n    \"antipattern\": \"undersized-ui-text\",\n    \"name\": \"Undersized functional text\",\n    \"description\": \"Interactive and content-bearing UI text (links, buttons, nav items, labels, table cells, meta rows, timecodes) below 11px is a legibility failure, not a style choice. WCAG sets no absolute pixel floor, but functional text under 11px is a defensible quality bar: it fails on high-DPI and small viewports and it degrades tap and read targets. The 11px floor holds even inside a footer; only non-interactive legal smallprint gets the softer 10px floor. Being ON the DESIGN.md size ramp does not exempt a value here: adding 8px to the ramp launders the token but not the legibility problem, and that is exactly the escape hatch this rule closes. Exempts sup/sub, visually-hidden (sr-only) text, and code/terminal contexts. Decorative letterspaced micro-labels are still functional and stay in scope.\",\n    \"severity\": \"warning\",\n    \"category\": \"quality\",\n    \"file\": \"file:///C:/Users/Efanio%20Jens/Desktop/Jen's%20Files/IIITDM/Year%203/Computer%20Networks/Lab%20Project/dist/client/renderer/index.html\",\n    \"line\": 0,\n    \"snippet\": \"10px functional text \\\"YO\\\" (below 11px floor)\",\n    \"selector\": \"span.avatar\"\n  },\n  {\n    \"antipattern\": \"undersized-ui-text\",\n    \"name\": \"Undersized functional text\",\n    \"description\": \"Interactive and content-bearing UI text (links, buttons, nav items, labels, table cells, meta rows, timecodes) below 11px is a legibility failure, not a style choice. WCAG sets no absolute pixel floor, but functional text under 11px is a defensible quality bar: it fails on high-DPI and small viewports and it degrades tap and read targets. The 11px floor holds even inside a footer; only non-interactive legal smallprint gets the softer 10px floor. Being ON the DESIGN.md size ramp does not exempt a value here: adding 8px to the ramp launders the token but not the legibility problem, and that is exactly the escape hatch this rule closes. Exempts sup/sub, visually-hidden (sr-only) text, and code/terminal contexts. Decorative letterspaced micro-labels are still functional and stay in scope.\",\n    \"severity\": \"warning\",\n    \"category\": \"quality\",\n    \"file\": \"file:///C:/Users/Efanio%20Jens/Desktop/Jen's%20Files/IIITDM/Year%203/Computer%20Networks/Lab%20Project/dist/client/renderer/index.html\",\n    \"line\": 0,\n    \"snippet\": \"10px functional text \\\"Pen · 0 elements\\\" (below 11px floor)\",\n    \"selector\": \"div.statusbar > span:nth-of-type(1)\"\n  },\n  {\n    \"antipattern\": \"undersized-ui-text\",\n    \"name\": \"Undersized functional text\",\n    \"description\": \"Interactive and content-bearing UI text (links, buttons, nav items, labels, table cells, meta rows, timecodes) below 11px is a legibility failure, not a style choice. WCAG sets no absolute pixel floor, but functional text under 11px is a defensible quality bar: it fails on high-DPI and small viewports and it degrades tap and read targets. The 11px floor holds even inside a footer; only non-interactive legal smallprint gets the softer 10px floor. Being ON the DESIGN.md size ramp does not exempt a value here: adding 8px to the ramp launders the token but not the legibility problem, and that is exactly the escape hatch this rule closes. Exempts sup/sub, visually-hidden (sr-only) text, and code/terminal contexts. Decorative letterspaced micro-labels are still functional and stay in scope.\",\n    \"severity\": \"warning\",\n    \"category\": \"quality\",\n    \"file\": \"file:///C:/Users/Efanio%20Jens/Desktop/Jen's%20Files/IIITDM/Year%203/Computer%20Networks/Lab%20Project/dist/client/renderer/index.html\",\n    \"line\": 0,\n    \"snippet\": \"10px functional text \\\"Saved on this device\\\" (below 11px floor)\",\n    \"selector\": \"div.statusbar > span:nth-of-type(2)\"\n  },\n  {\n    \"antipattern\": \"straggler\",\n    \"name\": \"Straggler\",\n    \"description\": \"The last line of this paragraph holds one word, which leaves a hole under the block. Set text-wrap: pretty on body copy (Chrome, Safari) to pull a word down beside it. Where a browser ignores it, edit the last sentence or bind the last two words with a no-break space. Keep it if the break is intended.\",\n    \"severity\": \"advisory\",\n    \"category\": \"quality\",\n    \"file\": \"file:///C:/Users/Efanio%20Jens/Desktop/Jen's%20Files/IIITDM/Year%203/Computer%20Networks/Lab%20Project/dist/client/renderer/index.html\",\n    \"line\": 0,\n    \"snippet\": \"\\\"workspace.\\\" alone on the last of 2 lines (27% of the measure)\",\n    \"advisory\": true,\n    \"selector\": \"p.muted\"\n  },\n  {\n    \"antipattern\": \"cream-palette\",\n    \"name\": \"Cream / beige palette\",\n    \"description\": \"A warm cream or beige page background has become the default \\\"tasteful\\\" AI surface, reached for by reflex. Choose a background that comes from a deliberate palette, not the safe warm off-white.\",\n    \"severity\": \"warning\",\n    \"category\": \"slop\",\n    \"file\": \"file:///C:/Users/Efanio%20Jens/Desktop/Jen's%20Files/IIITDM/Year%203/Computer%20Networks/Lab%20Project/dist/client/renderer/index.html\",\n    \"line\": 0,\n    \"snippet\": \"cream/beige page background rgb(247, 245, 236)\",\n    \"selector\": \"body\"\n  },\n  {\n    \"antipattern\": \"low-contrast\",\n    \"name\": \"Low contrast text\",\n    \"description\": \"Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.\",\n    \"severity\": \"advisory\",\n    \"category\": \"quality\",\n    \"file\": \"file:///C:/Users/Efanio%20Jens/Desktop/Jen's%20Files/IIITDM/Year%203/Computer%20Networks/Lab%20Project/dist/client/renderer/index.html\",\n    \"line\": 0,\n    \"snippet\": \"browser contrast 4.4:1 median 4.4:1 (need 4.5:1) via canvas-canvas-underlay+alpha \\\"Choose a tool and make your first mark.\\\"\",\n    \"advisory\": true,\n    \"selector\": \"div.empty-hint > p\"\n  },\n  {\n    \"antipattern\": \"low-contrast\",\n    \"name\": \"Low contrast text\",\n    \"description\": \"Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.\",\n    \"severity\": \"advisory\",\n    \"category\": \"quality\",\n    \"file\": \"file:///C:/Users/Efanio%20Jens/Desktop/Jen's%20Files/IIITDM/Year%203/Computer%20Networks/Lab%20Project/dist/client/renderer/index.html\",\n    \"line\": 0,\n    \"snippet\": \"browser contrast 4.4:1 median 4.4:1 (need 4.5:1) via canvas-canvas-underlay+alpha \\\"Hold Space to pan · Scroll to zoom · ? for shortcuts\\\"\",\n    \"advisory\": true,\n    \"selector\": \"small\"\n  }\n]\n",
+    "err": ""
+  },
+  "states": [
+    {
+      "theme": "light",
+      "body": {
+        "fg": "oklch(0.27 0.035 160)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "outline": "oklch(0.27 0.035 160)"
+      },
+      "button": {
+        "fg": "oklch(0.27 0.035 160)",
+        "bg": "oklch(0.99 0.005 100)",
+        "outline": "oklch(0.27 0.035 160)"
+      },
+      "muted": {
+        "fg": "oklch(0.46 0.023 160)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "outline": "oklch(0.46 0.023 160)"
+      },
+      "canvas": "<canvas class=\"canvas-layer\" tabindex=\"0\" aria-label=\"Shared whiteboard. Choose a tool to draw.\" width=\"1899\" height=\"940\" title=\"\"></canvas>",
+      "targets": [
+        {
+          "label": "Color #243E36",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #0072B2",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #D55E00",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #A23356",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #E6AF2E",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #FFFFFF",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": null,
+          "width": 90,
+          "height": 17.33333396911621
+        },
+        {
+          "label": null,
+          "width": 90,
+          "height": 17.33333396911621
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "body": {
+        "fg": "oklch(0.94 0.016 100)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "outline": "oklch(0.94 0.016 100)"
+      },
+      "button": {
+        "fg": "oklch(0.94 0.016 100)",
+        "bg": "oklab(0.99 -0.000868241 0.00492404)",
+        "outline": "oklch(0.94 0.016 100)"
+      },
+      "muted": {
+        "fg": "oklch(0.76 0.02 140)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "outline": "oklch(0.76 0.02 140)"
+      },
+      "canvas": "<canvas class=\"canvas-layer\" tabindex=\"0\" aria-label=\"Shared whiteboard. Choose a tool to draw.\" width=\"1899\" height=\"940\" title=\"\"></canvas>",
+      "targets": [
+        {
+          "label": "Color #243E36",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #0072B2",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #D55E00",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #A23356",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #E6AF2E",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": "Color #FFFFFF",
+          "width": 23,
+          "height": 23
+        },
+        {
+          "label": null,
+          "width": 90,
+          "height": 17.33333396911621
+        },
+        {
+          "label": null,
+          "width": 90,
+          "height": 17.33333396911621
+        }
+      ]
+    }
+  ]
+}

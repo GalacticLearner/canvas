@@ -1,0 +1,18 @@
+[
+  {
+    "format": "png",
+    "bytes": 50339
+  },
+  {
+    "format": "svg",
+    "bytes": 4967
+  },
+  {
+    "format": "pdf",
+    "bytes": 1598857
+  },
+  {
+    "format": "wbboard",
+    "bytes": 7505
+  }
+]

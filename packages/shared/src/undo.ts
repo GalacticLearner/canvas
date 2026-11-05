@@ -23,6 +23,8 @@ export function applicable(op: Op, state: BoardState): Op | null {
 }
 /** Own actions only; remote changes never enter these stacks. */
 export class UndoManager {
+  /** Most recent conflict notice is consumed by the client after undo. */
+  notice: string | null = null;
   private past: { forward: Op; inverse: Op }[] = [];
   private future: { forward: Op; inverse: Op }[] = [];
   /** Record one gesture and invalidate redo after a fresh edit. */
@@ -33,10 +35,37 @@ export class UndoManager {
   }
   /** Undo remains last-writer-wins for the exact changed properties. */
   undo(state: BoardState): Op | null {
+    this.notice = null;
     while (this.past.length) {
       const entry = this.past.pop()!;
       const op = applicable(entry.inverse, state);
       if (op) {
+        const conflict = (forward: Op): boolean =>
+          forward.kind === "batch"
+            ? forward.ops.some(conflict)
+            : forward.kind === "patch" &&
+              !!state.elements[forward.id] &&
+              Object.entries(forward.set).some(([key, value]) =>
+                key === "style"
+                  ? Object.entries(value || {}).some(
+                      ([k, v]) =>
+                        JSON.stringify(
+                          state.elements[forward.id].style[
+                            k as keyof (typeof state.elements)[string]["style"]
+                          ],
+                        ) !== JSON.stringify(v),
+                    )
+                  : JSON.stringify(
+                      (
+                        state.elements[forward.id] as unknown as Record<
+                          string,
+                          unknown
+                        >
+                      )[key],
+                    ) !== JSON.stringify(value),
+              );
+        if (conflict(entry.forward))
+          this.notice = "Undone (overrode a newer change)";
         this.future.push(entry);
         return op;
       }

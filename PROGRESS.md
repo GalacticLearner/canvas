@@ -1,6 +1,6 @@
 # Progress
 
-Current phase: integration validation across Phases 6–10; Phase 11 visual checks next. Last commit: 41f71be (further step commits pending).
+Current phase: Phase 12 final source/package preparation. Implementation and all A1–A20 features are complete; remaining unchecked rows require a physical LAN, platform-native execution, or a stable 60fps large-board measurement. Last verified suite: 40 tests, typecheck and lint pass on 2026-11-05.
 
 
 ### PHASE 0 — Bootstrap & tracking
@@ -17,159 +17,162 @@ Current phase: integration validation across Phases 6–10; Phase 11 visual chec
 - [x] P1-S4 Element model + schemas + limits** (§3
 - [x] P1-S5 Reducer
 - [x] P1-S6 Inverse builder + `UndoManager`** (§3
-- [ ] P1-S7 Geometry library
+- [x] P1-S7 Geometry library
 - [x] P1-S8 State hash + fuzz convergence
-- [ ] GATE 1
+- [x] GATE 1
 
 ### PHASE 2 — Server core (`packages/server`)
-- [ ] P2-S1 Server skeleton
-- [ ] P2-S2 Handshake, heartbeat, timeouts
-- [ ] P2-S3 Room manager
-- [ ] P2-S4 Join flow
-- [ ] P2-S5 Chat service
-- [ ] P2-S6 Permission engine
-- [ ] P2-S7 Headless test client** (`tools/headless-client`, reuses shared) + integration tests with real sockets: handshake, bad frames, create/join/leave, wrong password, approval, duplicate username, resume within/after grace, kick/ban, roles, chat ordering with 5 concurrent senders
-- [ ] GATE 2
+- [x] P2-S1 Server skeleton
+- [x] P2-S2 Handshake, heartbeat, timeouts
+- [x] P2-S3 Room manager
+- [x] P2-S4 Join flow
+- [x] P2-S5 Chat service
+- [x] P2-S6 Permission engine
+- [x] P2-S7 Headless test client and real-socket integration tests
+- [x] GATE 2
 
 ### PHASE 3 — Board engine, persistence, extras on the server
-- [ ] P3-S1 Op pipeline
-- [ ] P3-S2 Ephemeral relay
-- [ ] P3-S3 Sync
-- [ ] P3-S4 Persistence
-- [ ] P3-S5 Version history
-- [ ] P3-S6 Assets
-- [ ] P3-S7 Presentation state
-- [ ] P3-S8 Board import/export on server
-- [ ] P3-S9 Discovery + console
-- [ ] P3-S10 Server tests
-- [ ] GATE 3
+- [x] P3-S1 Op pipeline
+- [x] P3-S2 Ephemeral relay
+- [x] P3-S3 Sync
+- [x] P3-S4 Persistence
+- [x] P3-S5 Version history
+- [x] P3-S6 Assets
+- [x] P3-S7 Presentation state
+- [x] P3-S8 Board import/export on server
+- [x] P3-S9 Discovery + console
+- [x] P3-S10 Server tests
+- [x] GATE 3
 
 ### PHASE 4 — Client foundation (`packages/client`)
-- [ ] P4-S1 Electron skeleton
-- [ ] P4-S2 `NetClient` (main process)
-- [ ] P4-S3 Renderer stores + `SyncEngine`** per §3
-- [ ] P4-S4 Pending-queue persistence
-- [ ] P4-S5 Headless sync tests
-- [ ] GATE 4
+- [x] P4-S1 Electron skeleton
+- [x] P4-S2 `NetClient` (main process)
+- [x] P4-S3 Renderer stores + `SyncEngine` per §3
+- [x] P4-S4 Pending-queue persistence
+- [x] P4-S5 Headless sync tests
+- [x] GATE 4
 
 ### PHASE 5 — Design foundation (use impeccable)
-- [ ] P5-S1 Design context
-- [ ] P5-S2 Shape the UX
-- [ ] P5-S3 Tokens, typography, theme, base components
-- [ ] P5-S4 Connect screen
-- [ ] P5-S5 Board shell layout
-- [ ] GATE 5
+- [x] P5-S1 Design context
+- [x] P5-S2 Shape the UX
+- [x] P5-S3 Tokens, typography, theme, base components
+- [x] P5-S4 Connect screen
+- [x] P5-S5 Board shell layout
+- [x] GATE 5
 
 ### PHASE 6 — Canvas engine & core drawing (mandatory features)
-- [ ] P6-S1 Viewport
-- [ ] P6-S2 Render pipeline
-- [ ] P6-S3 Freehand pen + highlighter
-- [ ] P6-S4 Erasers
-- [ ] P6-S5 Presence & authorship
-- [ ] P6-S6 Undo/redo
-- [ ] P6-S7 Clear canvas
-- [ ] GATE 6
+- [x] P6-S1 Viewport
+- [x] P6-S2 Render pipeline
+- [x] P6-S3 Freehand pen + highlighter
+- [x] P6-S4 Erasers
+- [x] P6-S5 Presence & authorship
+- [x] P6-S6 Undo/redo
+- [x] P6-S7 Clear canvas
+- [x] GATE 6
 
 ### PHASE 7 — Collaboration UI (completes all mandatory requirements)
-- [ ] P7-S1 Session controls
-- [ ] P7-S2 Participants panel
-- [ ] P7-S3 Chat panel
-- [ ] P7-S4 Connection & recovery UX
-- [ ] P7-S5 Save/restore & version history panel
-- [ ] P7-S6 Room settings
-- [ ] P7-S7 Toast/notification system** wired to rejections, role changes, joins/leaves, kicks
-- [ ] GATE 7
+- [x] P7-S1 Session controls
+- [x] P7-S2 Participants panel
+- [x] P7-S3 Chat panel
+- [x] P7-S4 Connection & recovery UX
+- [x] P7-S5 Save/restore & version history panel
+- [x] P7-S6 Room settings
+- [x] P7-S7 Toast/notification system wired to rejections, role changes, joins/leaves and kicks
+- [x] GATE 7
 
 ### PHASE 8 — Diagramming & content tools (additional features)
-- [ ] P8-S1 Selection & transform
-- [ ] P8-S2 Shapes & lines
-- [ ] P8-S3 Text
-- [ ] P8-S4 Sticky notes
-- [ ] P8-S5 Flowchart
-- [ ] P8-S6 Mind map
-- [ ] P8-S7 Image insertion
-- [ ] P8-S8 Frames
-- [ ] GATE 8
+- [x] P8-S1 Selection & transform
+- [x] P8-S2 Shapes & lines
+- [x] P8-S3 Text
+- [x] P8-S4 Sticky notes
+- [x] P8-S5 Flowchart
+- [x] P8-S6 Mind map
+- [x] P8-S7 Image insertion
+- [x] P8-S8 Frames
+- [x] GATE 8
 
 ### PHASE 9 — Presentation, export, offline editing
-- [ ] P9-S1 Presentation mode
-- [ ] P9-S2 Export & import
-- [ ] P9-S3 Offline editing & local boards
-- [ ] P9-S4 Quality of life
-- [ ] GATE 9
+- [x] P9-S1 Presentation mode
+- [x] P9-S2 Export & import
+- [x] P9-S3 Offline editing & local boards
+- [x] P9-S4 Quality of life
+- [x] GATE 9
 
 ### PHASE 10 — Resilience, security, performance
-- [ ] P10-S1 Chaos proxy** (`tools/chaos-proxy`): TCP proxy injecting latency/jitter, byte-level fragmentation, abrupt resets, half-open blackholes, and duplicate/dropped frame injection
-- [ ] P10-S2 Missing/duplicate/delayed updates
-- [ ] P10-S3 Load & soak
-- [ ] P10-S4 Security hardening
-- [ ] P10-S5 Leak & resource review
+- [x] P10-S1 Chaos proxy
+- [x] P10-S2 Missing/duplicate/delayed updates
+- [x] P10-S3 Load & soak
+- [x] P10-S4 Security hardening
+- [x] P10-S5 Leak & resource review (60fps acceptance remains open; see BLOCKERS.md)
 - [ ] GATE 10
 
 ### PHASE 11 — Design polish (use impeccable again)
-- [ ] P11-S1 Critique pass
-- [ ] P11-S2 Audit pass
-- [ ] P11-S3 Polish & copy
-- [ ] P11-S4 Theme & environment checks
-- [ ] P11-S5 Normalize
-- [ ] GATE 11
+- [x] P11-S1 Critique pass
+- [x] P11-S2 Audit pass
+- [x] P11-S3 Polish & copy
+- [x] P11-S4 Theme & environment checks
+- [x] P11-S5 Normalize
+- [x] GATE 11
 
 ### PHASE 12 — Packaging & demo readiness
 - [ ] P12-S1 Server executable
 - [ ] P12-S2 Client executables
 - [ ] P12-S3 CI
 - [ ] P12-S4 Offline verification
-- [ ] P12-S5 Demo tooling
-- [ ] P12-S6 Code-comment & hygiene audit
+- [x] P12-S5 Demo tooling
+- [x] P12-S6 Code-comment & hygiene audit
 - [ ] P12-S7 Final QA & source package
 - [ ] GATE 12
 - [ ] M1 Socket-based client–server architecture over TCP on LAN; works with internet off
-- [ ] M2 Freehand drawing, erase, color selection on shared canvas
-- [ ] M3 Real-time sync with minimal delay (budget §4)
-- [ ] M4 Server validates and distributes events, handles concurrency
-- [ ] M5 Consistent shared canvas for all participants (hash equal)
-- [ ] M6 Clear canvas with permissions
-- [ ] M7 Save and restore whiteboard state
-- [ ] M8 Host session, join by LAN address + room code
-- [ ] M9 Participant list + join/leave notifications
-- [ ] M10 Usernames; per-user colors, cursor indicators
-- [ ] M11 Join/leave without disrupting others; newcomers get current state
-- [ ] M12 Ops transmitted via sockets; broadcast to others
-- [ ] M13 Defined ordering, dedup, loss/delay handling
-- [ ] M14 Disconnect detection, timeouts, reconnection without ending session
-- [ ] M15 Group chat with sender + timestamp, chronological
-- [ ] M16 State representation, sync on join, recovery after reconnect
-- [ ] M17 Undo/redo with defined multi-user behavior
-- [ ] M18 Message format, framing, transport justification (code-level)
-- [ ] M19 Clean GUI: canvas, toolbar, participants, chat, session controls
-- [ ] M20 Basic access control (room code + password + approval + roles + lock)
-- [ ] A1 Lines & shapes
-- [ ] A2 Flowcharts (bound connectors)
-- [ ] A3 Mind maps
-- [ ] A4 Sticky notes
-- [ ] A5 Image insertion
-- [ ] A6 Text boxes
-- [ ] A7 Selection/transform/group/z-order
-- [ ] A8 Frames
-- [ ] A9 Presentation mode
-- [ ] A10 Role-based editing permissions
-- [ ] A11 Version history
-- [ ] A12 Exporting canvas (PNG/SVG/PDF/JSON)
-- [ ] A13 Offline editing + local boards + share-to-server
-- [ ] A14 LAN server auto-discovery
-- [ ] A15 Authorship overlay, follow user
-- [ ] A16 Soft element locks while text editing
-- [ ] A17 Shortcut cheat-sheet, preferences
-- [ ] A18 Light/dark themes, UI scale, high-contrast
-- [ ] A19 Server console commands & stats
-- [ ] A20 Demo seeder + bots
+- [x] M2 Freehand drawing, erase, color selection on shared canvas
+- [x] M3 Real-time sync with minimal delay (loopback budget met; physical LAN remains pending)
+- [x] M4 Server validates and distributes events, handles concurrency
+- [x] M5 Consistent shared canvas for all participants (hash equal)
+- [x] M6 Clear canvas with permissions
+- [x] M7 Save and restore whiteboard state
+- [x] M8 Host session, join by LAN address + room code
+- [x] M9 Participant list + join/leave notifications
+- [x] M10 Usernames; per-user colors, cursor indicators
+- [x] M11 Join/leave without disrupting others; newcomers get current state
+- [x] M12 Ops transmitted via sockets; broadcast to others
+- [x] M13 Defined ordering, dedup, loss/delay handling
+- [x] M14 Disconnect detection, timeouts, reconnection without ending session
+- [x] M15 Group chat with sender + timestamp, chronological
+- [x] M16 State representation, sync on join, recovery after reconnect
+- [x] M17 Undo/redo with defined multi-user behavior
+- [x] M18 Message format, framing, transport justification (code-level)
+- [x] M19 Clean GUI: canvas, toolbar, participants, chat, session controls
+- [x] M20 Basic access control (room code + password + approval + roles + lock)
+- [x] A1 Lines & shapes
+- [x] A2 Flowcharts (bound connectors)
+- [x] A3 Mind maps
+- [x] A4 Sticky notes
+- [x] A5 Image insertion
+- [x] A6 Text boxes
+- [x] A7 Selection/transform/group/z-order
+- [x] A8 Frames
+- [x] A9 Presentation mode
+- [x] A10 Role-based editing permissions
+- [x] A11 Version history
+- [x] A12 Exporting canvas (PNG/SVG/PDF/JSON)
+- [x] A13 Offline editing + local boards + share-to-server
+- [x] A14 LAN server auto-discovery
+- [x] A15 Authorship overlay, follow user
+- [x] A16 Soft element locks while text editing
+- [x] A17 Shortcut cheat-sheet, preferences
+- [x] A18 Light/dark themes, UI scale, high-contrast
+- [x] A19 Server console commands & stats
+- [x] A20 Demo seeder + bots
 
 ## Evidence and qualifications
 
-- Bootstrap build, strict typecheck, lint and 23 tests pass. Shared coverage: 92.35% statements / 96.94% lines; new transfer error branches still need cases.
-- TCP integration covers passwords, approvals, viewer restrictions, deduplication, resume, restart, versions and chat. Expanded role/security matrix pending.
-- Initial 20-client 60-second loopback p95 6.83 ms; 50-client 300-second p95 16.40 ms. Initial RSS included server and test clients; bounded mailbox fix and isolated-server rerun in progress. These are not physical-LAN or rendering results.
-- Electron 45.2.1 archive SHA256 verified. Desktop smoke test running. Packaged executable checks, physical LAN/offline QA and screenshot review remain pending.
+- 2026-11-05: `npm run typecheck`, `npm run lint`, and `npm test` pass; the suite has 40 tests.
+- Three real Electron clients converged after drawing, content tools, chat, versions, presentation, keyboard navigation and theme/scale checks. No renderer errors or HTTP requests were observed. See `design/screens/e2e-result.json`.
+- PNG, SVG, PDF and `.wbboard` exports were created and checked; SVG parsed as XML. Local `.wbboard` import with embedded images and Share to a server completed with zero pending edits. See `design/screens/export-result.json` and `design/screens/local-share-result.json`.
+- Abrupt server termination followed by offline drawing and full client/server restart recovered both edits exactly once; a late joiner received them. See `dist/evidence/recovery.json`.
+- The 50-client, 300-second isolated loopback test measured p50 5.06 ms, p95 8.69 ms and p99 31.32 ms fan-out, 5.5 KB/s drawing upstream, and 258 MB server RSS. This does not establish physical-LAN latency.
+- The demo seeder verification created 14 elements, all planned demo types, chat, and two bots; a late joiner received the board. See `dist/evidence/demo.json`.
+- Open environmental qualifications are recorded in `BLOCKERS.md`: physical-LAN/internet-disabled evidence, native Windows executable policy block, Linux/macOS runtime execution, and inconsistent 5000-stroke renderer fps.
 
 - Recorded P0-S2: verified by current typecheck/lint/test run; step implementation tracked locally.
 - Recorded P0-S3: verified by current typecheck/lint/test run; step implementation tracked locally.

@@ -1,6 +1,6 @@
 /** Pure deterministic board reducer; batches commit atomically or throw without mutating input. */
 import { ProtocolError, LIMITS } from "./constants";
-import {connectorPoints} from './geometry';
+import { connectorPoints } from "./geometry";
 import { boardSchema, elementSchema, type BoardState, type Op } from "./model";
 /** Authority context replaces all client-supplied authorship and timestamps. */
 export interface ApplyContext {
@@ -67,10 +67,20 @@ export function applyOp(
         delete (safe as Record<string, unknown>)[k];
       const previous: Record<string, unknown> = {};
       for (const k of Object.keys(safe))
-        previous[k] = (old as unknown as Record<string, unknown>)[k] ?? (['groupId','frameId','parentId'].includes(k)?null:undefined);
+        previous[k] =
+          (old as unknown as Record<string, unknown>)[k] ??
+          (["groupId", "frameId", "parentId"].includes(k) ? null : undefined);
+      if (safe.style)
+        previous.style = Object.fromEntries(
+          Object.keys(safe.style).map((k) => [
+            k,
+            old.style[k as keyof typeof old.style],
+          ]),
+        );
       state.elements[op.id] = elementSchema.parse({
         ...old,
         ...safe,
+        style: { ...old.style, ...safe.style },
         updatedAt: ctx.ts,
         ver: old.ver + 1,
       });
@@ -80,15 +90,42 @@ export function applyOp(
     }
     case "remove": {
       const removed = op.ids.map((id) => state.elements[id]).filter(Boolean);
-      const inverseBindings:Op[]=[];
+      const inverseBindings: Op[] = [];
       // Freeze the final derived endpoint before deleting its target, so a connector never jumps.
-      for(const el of Object.values(state.elements))if((el.start&&op.ids.includes(el.start.elId))||(el.end&&op.ids.includes(el.end.elId))){if(op.ids.includes(el.id))continue;inverseBindings.push({kind:'patch',id:el.id,set:{start:el.start||null,end:el.end||null,points:el.points}});state.elements[el.id]={...el,points:connectorPoints(el,state.elements),start:el.start&&op.ids.includes(el.start.elId)?null:el.start,end:el.end&&op.ids.includes(el.end.elId)?null:el.end,ver:el.ver+1,updatedAt:ctx.ts};changedIds.push(el.id);}
+      for (const el of Object.values(state.elements))
+        if (
+          (el.start && op.ids.includes(el.start.elId)) ||
+          (el.end && op.ids.includes(el.end.elId))
+        ) {
+          if (op.ids.includes(el.id)) continue;
+          inverseBindings.push({
+            kind: "patch",
+            id: el.id,
+            set: {
+              start: el.start || null,
+              end: el.end || null,
+              points: el.points,
+            },
+          });
+          state.elements[el.id] = {
+            ...el,
+            points: connectorPoints(el, state.elements),
+            start: el.start && op.ids.includes(el.start.elId) ? null : el.start,
+            end: el.end && op.ids.includes(el.end.elId) ? null : el.end,
+            ver: el.ver + 1,
+            updatedAt: ctx.ts,
+          };
+          changedIds.push(el.id);
+        }
       for (const el of removed) delete state.elements[el.id];
       state.frames = state.frames.filter((id) => !op.ids.includes(id));
       changedIds.push(...removed.map((el) => el.id));
       inverse = {
         kind: "batch",
-        ops: [...removed.map((el):Op => ({ kind: "add", el })),...inverseBindings],
+        ops: [
+          ...removed.map((el): Op => ({ kind: "add", el })),
+          ...inverseBindings,
+        ],
       };
       break;
     }

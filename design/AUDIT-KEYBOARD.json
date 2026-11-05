@@ -1,0 +1,16 @@
+{
+  "spaceOpensSettings": 0,
+  "enterOpensSettings": 1,
+  "contrast": [
+    {
+      "theme": "light",
+      "mutedOnPaper": 6.464095445349733,
+      "inkOnSurface": 14.427694240655876
+    },
+    {
+      "theme": "dark",
+      "mutedOnPaper": 8.623725853798033,
+      "inkOnSurface": 14.121378343334563
+    }
+  ]
+}

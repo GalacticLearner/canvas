@@ -1,3 +1,7 @@
 # Blockers
 
-No blockers recorded yet. Unverified acceptance criteria remain unchecked in PROGRESS.md.
+- P12-S1 executable smoke test: Windows Application Control blocked launching dist/executables/canvas-server-win-x64.exe, reporting: "An Application Control policy has blocked this file." Source server and the original signed Electron runtime execute and are tested. No machine security setting was changed. Native executable execution remains unverified on this host.
+- P12-S2 native platforms: the Windows portable artifact is built. Linux AppImage and macOS DMG still require their prepared native CI jobs; no cross-platform runtime pass is claimed.
+- Final QA physical LAN: this session has one Windows machine; no second physical LAN endpoint or user-authorized network-disable transition has been available. Loopback TCP tests and request-denial instrumentation are measured evidence; physical-LAN latency and internet-disabled acceptance remain pending.
+- P12 cross-platform verification: Linux/macOS native execution cannot be performed on the Windows host. The native CI matrix is prepared; no remote repository has been supplied or pushed.
+- P10-S5 / Gate10 rendering budget: the latest dedicated ten-room, 5000-stroke benchmark meets join (<1s:264ms), server RSS (<300MB:267MB), and zero observed renderer tasks over50ms, but recorded34fps during wheel zoom on this host. An earlier run recorded60fps. The60fps criterion is not accepted based on inconsistent results. Source includes Path2D caching, spatial culling and idle overlay scheduling; no rendering feature was removed to improve the measurement.

@@ -1,0 +1,38 @@
+{
+  "tools": [
+    {
+      "tool": "Rectangle (R)",
+      "expectedType": "rect",
+      "objects": "rect: a098ba80-f5e4-4002-afd4-b79797ac5614 · You",
+      "matched": true
+    },
+    {
+      "tool": "Text (T)",
+      "expectedType": "text",
+      "objects": "rect: a098ba80-f5e4-4002-afd4-b79797ac5614 · You\ntext: Audit text · You",
+      "matched": true
+    },
+    {
+      "tool": "Mind map (M)",
+      "expectedType": "mindnode",
+      "objects": "rect: a098ba80-f5e4-4002-afd4-b79797ac5614 · You\ntext: Audit text · You\nmindnode: Audit mindnode · You",
+      "matched": true
+    }
+  ],
+  "hover": [
+    {
+      "theme": "light",
+      "fg": "rgb(255, 255, 255)",
+      "bg": "oklch(0.36 0.065 160)",
+      "filter": "brightness(1.12)",
+      "tokenContrast": 10.58209844428508
+    },
+    {
+      "theme": "dark",
+      "fg": "rgb(20, 45, 32)",
+      "bg": "oklch(0.78 0.09 150)",
+      "filter": "brightness(1.12)",
+      "tokenContrast": 7.611902103581247
+    }
+  ]
+}

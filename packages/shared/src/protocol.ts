@@ -86,7 +86,16 @@ const snapMeta = z.object({
 /** Payload schemas intentionally enumerate every message, including responses. */
 export const catalog = {
   hello: z
-    .object({ clientId: str, app: str, appVersion: str, platform: str })
+    .object({
+      clientId: str,
+      app: str,
+      appVersion: str,
+      platform: str,
+      identityColorHint: z
+        .string()
+        .regex(/^#[a-fA-F0-9]{6}$/)
+        .optional(),
+    })
     .strict(),
   hello_ack: z.object({
     serverId: str,

@@ -1,0 +1,13 @@
+{
+  "clients": 3,
+  "elements": 12,
+  "seq": 14,
+  "hashes": [
+    "aeeb5279a8169dbe34f569558ad3fb767f0a90cfb355d612f1d4de0272cf7e90",
+    "aeeb5279a8169dbe34f569558ad3fb767f0a90cfb355d612f1d4de0272cf7e90",
+    "aeeb5279a8169dbe34f569558ad3fb767f0a90cfb355d612f1d4de0272cf7e90"
+  ],
+  "externalRequests": [],
+  "rendererErrors": [],
+  "keyboardFlow": "Connect → draw → chat → leave via Tab and keyboard; dialog focus and property/dock reachability verified in both themes at100/125/150%"
+}

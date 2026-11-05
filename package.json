@@ -18,7 +18,9 @@
     "package:source": "powershell -NoProfile -File scripts/source.ps1",
     "seed": "tsx tools/seed/index.ts",
     "loadtest": "tsx tools/loadtest/index.ts",
-    "test:e2e": "node tools/e2e/smoke.mjs"
+    "test:e2e": "node tools/e2e/smoke.mjs",
+    "verify:server": "tsx tools/verify-server/index.ts"
+    ,"verify:demo": "node --import tsx tools/seed/verify.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
@@ -51,5 +53,7 @@
     "react-dom": "^19.2.0",
     "zod": "^4.6.7",
     "zustand": "^5.0.8"
-  }
+  },
+  "description": "Offline LAN collaborative whiteboard",
+  "author": "Canvas project"
 }

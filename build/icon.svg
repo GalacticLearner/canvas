@@ -1,0 +1,2 @@
+<!-- Canvas app mark: a sheet and a collaborative drawing gesture, authored as vector geometry. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><rect width="256" height="256" rx="52" fill="#243e36"/><path d="M64 62h92l38 38v94H64z" fill="#f5f5ef"/><path d="M156 62v38h38" fill="none" stroke="#bdc9bd" stroke-width="8"/><path d="M88 160l28-9 52-52 12 12-52 52-28 9z" fill="#b77c1b"/><path d="M87 190h80" stroke="#243e36" stroke-width="9" stroke-linecap="round"/></svg>
